@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: #6ec6ff;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        #6ec6ff 0%,
+        #9be4ff 45%,
+        #bde9ff 70%,
+        #8fd16b 71%,
+        #4caf50 100%
+    );
+}
