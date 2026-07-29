@@ -120,7 +120,13 @@ function drawPlane(){
 
 function update(){
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // Sky
+ctx.fillStyle = "#87CEEB";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Ground
+ctx.fillStyle = "#7BCB5B";
+ctx.fillRect(0, canvas.height - 120, canvas.width, 120);
 
     // Clouds
     for(const cloud of clouds){
