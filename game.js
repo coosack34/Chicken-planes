@@ -58,64 +58,84 @@ function drawCloud(c){
     ctx.fill();
 }
 
-function drawPlane(){
+function drawPlane() {
 
     // Shadow
-    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillStyle = "rgba(0,0,0,0.25)";
     ctx.beginPath();
-    ctx.ellipse(
-        plane.x,
-        plane.y+25,
-        28,
-        8,
-        0,
-        0,
-        Math.PI*2
-    );
+    ctx.ellipse(plane.x, plane.y + 28, 30, 8, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // Propeller
+    let spin = Math.sin(Date.now() / 40) * 10;
+
+    ctx.strokeStyle = "#dddddd";
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+    ctx.moveTo(plane.x + 42, plane.y - spin);
+    ctx.lineTo(plane.x + 42, plane.y + spin);
+    ctx.stroke();
 
     // Body
-    ctx.fillStyle="#d62828";
-    ctx.fillRect(
-        plane.x-30,
-        plane.y-10,
-        60,
-        20
-    );
+    ctx.fillStyle = "#1565C0";
+    ctx.beginPath();
+    ctx.ellipse(plane.x, plane.y, 35, 12, 0, 0, Math.PI * 2);
+    ctx.fill();
 
     // Nose
+    ctx.fillStyle = "#FFD54F";
     ctx.beginPath();
-    ctx.moveTo(plane.x+30,plane.y);
-    ctx.lineTo(plane.x+45,plane.y-10);
-    ctx.lineTo(plane.x+45,plane.y+10);
+    ctx.moveTo(plane.x + 35, plane.y);
+    ctx.lineTo(plane.x + 47, plane.y - 7);
+    ctx.lineTo(plane.x + 47, plane.y + 7);
     ctx.fill();
 
-    // Wings
-    ctx.fillStyle="#f77f00";
+    // Tail
+    ctx.fillStyle = "#1565C0";
+    ctx.beginPath();
+    ctx.moveTo(plane.x - 30, plane.y);
+    ctx.lineTo(plane.x - 42, plane.y - 12);
+    ctx.lineTo(plane.x - 36, plane.y);
+    ctx.lineTo(plane.x - 42, plane.y + 12);
+    ctx.fill();
+
+    // Main Wings
+    ctx.fillStyle = "#1976D2";
 
     ctx.beginPath();
-    ctx.moveTo(plane.x-5,plane.y);
-    ctx.lineTo(plane.x-30,plane.y-18);
-    ctx.lineTo(plane.x+10,plane.y-8);
+    ctx.moveTo(plane.x - 5, plane.y);
+    ctx.lineTo(plane.x - 22, plane.y - 22);
+    ctx.lineTo(plane.x + 15, plane.y - 7);
     ctx.fill();
 
     ctx.beginPath();
-    ctx.moveTo(plane.x-5,plane.y);
-    ctx.lineTo(plane.x-30,plane.y+18);
-    ctx.lineTo(plane.x+10,plane.y+8);
+    ctx.moveTo(plane.x - 5, plane.y);
+    ctx.lineTo(plane.x - 22, plane.y + 22);
+    ctx.lineTo(plane.x + 15, plane.y + 7);
     ctx.fill();
+
+    // Yellow stripe
+    ctx.fillStyle = "#FFEB3B";
+    ctx.fillRect(plane.x - 20, plane.y - 2, 35, 4);
 
     // Cockpit
-    ctx.fillStyle="#87ceeb";
+    ctx.fillStyle = "#81D4FA";
     ctx.beginPath();
-    ctx.arc(
-        plane.x+10,
-        plane.y,
-        6,
-        0,
-        Math.PI*2
-    );
+    ctx.arc(plane.x + 8, plane.y, 7, 0, Math.PI * 2);
     ctx.fill();
+
+    // Wheels
+    ctx.fillStyle = "#222";
+
+    ctx.beginPath();
+    ctx.arc(plane.x - 10, plane.y + 13, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(plane.x + 10, plane.y + 13, 3, 0, Math.PI * 2);
+    ctx.fill();
+}
 }
 
 function update(){
