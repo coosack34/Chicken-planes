@@ -135,7 +135,7 @@ function drawPlane() {
     ctx.beginPath();
     ctx.arc(plane.x + 10, plane.y + 13, 3, 0, Math.PI * 2);
     ctx.fill();
-}
+
 }
 
 function update(){
