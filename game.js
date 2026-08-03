@@ -21,15 +21,19 @@ let bullets = [];
 // ---------- Controls ----------
 const keys = {};
 
-window.addEventListener("keydown",(e)=>{
-    keys[e.key]=true;
-if (e.code === "Space") {
-    bullets.push({
-        x: plane.x + 45,
-        y: plane.y,
-        speed: 10
-    });
-  }
+window.addEventListener("keydown", (e) => {
+
+    e.preventDefault();
+
+    keys[e.key] = true;
+
+    if (e.code === "Space") {
+        bullets.push({
+            x: plane.x + 45,
+            y: plane.y,
+            speed: 10
+        });
+    }
 });
 
 window.addEventListener("keyup",(e)=>{
@@ -196,12 +200,13 @@ ctx.fillRect(0, canvas.height - 120, canvas.width, 120);
     plane.y=Math.max(40,Math.min(canvas.height-40,plane.y));
 
     drawPlane();
+drawBullets();
 
     // Version text
     ctx.fillStyle="black";
     ctx.font="22px Arial";
-    ctx.fillText("Chicken Planes v0.1.2",20,35);
-drawBullets();
+    ctx.fillText("Chicken Planes v0.2.1",20,35);
+
     
     requestAnimationFrame(update);
 }
