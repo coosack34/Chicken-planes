@@ -16,12 +16,20 @@ const plane = {
     height: 35,
     speed: 6
 };
-
+// Tennis Balls
+let bullets = [];
 // ---------- Controls ----------
 const keys = {};
 
 window.addEventListener("keydown",(e)=>{
     keys[e.key]=true;
+if (e.code === "Space") {
+    bullets.push({
+        x: plane.x + 45,
+        y: plane.y,
+        speed: 10
+    });
+  }
 });
 
 window.addEventListener("keyup",(e)=>{
@@ -59,7 +67,6 @@ function drawCloud(c){
 }
 
 function drawPlane() {
-
     // Shadow
     ctx.fillStyle = "rgba(0,0,0,0.25)";
     ctx.beginPath();
@@ -137,7 +144,25 @@ function drawPlane() {
     ctx.fill();
 
 }
+function drawBullets() {
 
+    ctx.fillStyle = "#b7ff4a";
+
+    for (let i = bullets.length - 1; i >= 0; i--) {
+
+        let b = bullets[i];
+
+        b.x += b.speed;
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (b.x > canvas.width + 20) {
+            bullets.splice(i, 1);
+        }
+    }
+}
 function update(){
 
     // Sky
@@ -176,7 +201,8 @@ ctx.fillRect(0, canvas.height - 120, canvas.width, 120);
     ctx.fillStyle="black";
     ctx.font="22px Arial";
     ctx.fillText("Chicken Planes v0.1.2",20,35);
-
+drawBullets();
+    
     requestAnimationFrame(update);
 }
 
